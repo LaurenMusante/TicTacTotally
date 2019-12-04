@@ -8,8 +8,9 @@ class Square extends React.Component {
     }
     
     handleClickingEmptySquare(){
+        console.log(this.props);
         const { dispatch } = this.props;
-        if(this.props.activePlayer=='1'){
+        if(this.props.playerState.activePlayer=='1'){
             const action = { type: 'VAL_O', id: this.props.id }
             dispatch(action);
             const action2 = { type:'END_TURN_PLAYER_ONE'}
@@ -29,12 +30,12 @@ class Square extends React.Component {
     render() {
 
         var conditionalRender;
-        if(0==1){
-           conditionalRender=  'X';
+        if(this.props.gameState[this.props.id] == "O"){
+           conditionalRender=  'O';
         }
-        else if(0==2){
+        else if(this.props.gameState[this.props.id] == "X"){
             
-             conditionalRender= 'O'            }
+             conditionalRender= 'X'}
         else{     
                 conditionalRender =<button onClick={this.handleClickingEmptySquare} className="">HI</button>;
         }
@@ -46,5 +47,8 @@ class Square extends React.Component {
     );
     }
 };
+const mapStateToProps = state => {
+    return(state);
+}
 
-export default connect()(Square);
+export default connect(mapStateToProps)(Square);
