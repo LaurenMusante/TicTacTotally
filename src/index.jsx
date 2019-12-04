@@ -5,8 +5,8 @@ import App from './components/App';
 import { AppContainer } from 'react-hot-loader';
 import { HashRouter } from 'react-router-dom';
 import { createStore } from 'redux';
-import reducer from './reducers/animal-list-reducer';
 import { Provider } from 'react-redux';
+import reducer from './reducers/game-data-reducer';
 
 const store = createStore(reducer);
 
