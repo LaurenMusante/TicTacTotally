@@ -7,8 +7,9 @@ import { HashRouter } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducers/game-data-reducer';
+import rootReducer from './reducers/index'
 
-const store = createStore(reducer);
+const store = createStore(rootReducer);
 
 const render = (Component) => {
   ReactDOM.render(
