@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
 class Square extends React.Component {
     constructor(props){
@@ -7,7 +8,20 @@ class Square extends React.Component {
     }
     
     handleClickingEmptySquare(){
-        console.log(this.props.id);
+        const { dispatch } = this.props;
+        if(this.props.activePlayer=='1'){
+            const action = { type: 'VAL_O', id: this.props.id }
+            dispatch(action);
+            const action2 = { type:'END_TURN_PLAYER_ONE'}
+            dispatch(action2);
+        }
+        else{
+            const action = { type: 'VAL_X', id: this.props.id }
+            dispatch(action);
+            const action2 = { type:'END_TURN_PLAYER_TWO'}
+            dispatch(action2);
+            
+        }
     }
     
         
@@ -33,4 +47,4 @@ class Square extends React.Component {
     }
 };
 
-export default Square;
+export default connect()(Square);
