@@ -28,20 +28,27 @@ class Square extends React.Component {
         
     
     render() {
-
+    const emojiStyle = {
+        fontSize: '40px'
+    }
         var conditionalRender;
         if(this.props.gameState[this.props.id] == "O"){
-           conditionalRender=  'O';
+           conditionalRender= <p style = {emojiStyle}> 🥕</p>;
         }
         else if(this.props.gameState[this.props.id] == "X"){
             
-             conditionalRender= 'X'}
+            conditionalRender= <p style = {emojiStyle}> 🍰</p>;
+            }
         else{     
                 conditionalRender =<button onClick={this.handleClickingEmptySquare} className="">HI</button>;
         }
         
+        const buttonStyle = {
+            height: '100px',
+            width: '100px'
+        }
         return (
-            <div className="btn">
+            <div style = {buttonStyle} className="btn">
             {conditionalRender}
             </div>
     );
