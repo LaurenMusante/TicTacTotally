@@ -82,7 +82,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template:'template.ejs',
       appMountId: 'react-app-root',
-      title: 'tictactotally',
+      title: '🥕🍰totally🍰🥕',
       filename: resolve(__dirname, 'build', 'index.html'),
     }),
   ]
