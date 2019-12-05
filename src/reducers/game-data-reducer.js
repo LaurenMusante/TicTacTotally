@@ -9,7 +9,9 @@ export default (state = {}, action) => {
         case 'VAL_X':
             newState = Object.assign({}, state, { [id]: 'X'})
             return newState
-
+        case 'RESTART':
+            newState = {}
+            return newState
         default: 
         return state;
     }   

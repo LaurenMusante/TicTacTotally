@@ -1,12 +1,22 @@
 import React from 'react';
 import Square from './Square';
+import { connect } from 'react-redux';
 import 'materialize-css/dist/css/materialize.min.css';
 
-function Grid () {
+function Grid (props) {
     const rowCSS = {
         display: 'flex',
         justifyContent: 'center'
     }
+
+    function handleRestart() {
+        const { dispatch } = props;
+        const action = { type: 'RESTART'}
+        dispatch(action);
+        console.log(props)
+
+    }
+
     return (
         <div className="">
             <div style={rowCSS} className="row">
@@ -24,8 +34,16 @@ function Grid () {
             <div className=""><Square id='8'/></div>
             <div className=""><Square id='9'/></div>
             </div>
+            <br/>
+            <button onClick={handleRestart}>Restart Game</button>
         </div>
     )
 }
 
-export default Grid;
+const mapStateToProps = state => {
+    return{
+        gameState: state.dataReducer
+    }
+}
+
+export default connect(mapStateToProps)(Grid);
