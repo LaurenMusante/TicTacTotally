@@ -1,12 +1,12 @@
-export default (state = {}, action) => {
+export default (state = { end: ''}, action) => {
     let newState;
     switch(action.type){
         case 'LARGE_CARROT':
-            newState = '🥕';
+            newState = {end: '🥕'};
             return newState;
 
         case 'LARGE_CAKE':
-            newState = '🍰';
+            newState = {end: '🍰'};
             return newState;
         default: 
         return state;

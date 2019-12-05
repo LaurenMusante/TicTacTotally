@@ -8,6 +8,12 @@ class Square extends React.Component {
         this.handleClickingEmptySquare= this.handleClickingEmptySquare.bind(this);
         this.handleEndGameScenario= this.handleEndGameScenario.bind(this);
     }
+
+    componentDidUpdate(prevProps){
+        console.log(prevProps);
+        console.log(this.props);
+        if(prevProps != this.props){this.handleEndGameScenario(this.props.gameState)}
+    }
     handleEndGameScenario(){
         console.log(this.props.endGameScenario);
         var endGame = EndGameScenario(this.props.gameState);
@@ -27,7 +33,6 @@ class Square extends React.Component {
     }
     
     handleClickingEmptySquare(){
-        console.log(this.props);
         const { dispatch } = this.props;
         if(this.props.playerState.activePlayer=='1'){
             const action = { type: 'VAL_O', id: this.props.id }
@@ -40,14 +45,12 @@ class Square extends React.Component {
             dispatch(action);
             const action2 = { type:'END_TURN_PLAYER_TWO'}
             dispatch(action2);
-            
         }    
     }
     
     
     render() {
  
-        console.log(EndGameScenario(this.props.gameState))
         const emojiStyle = {
             fontSize: '40px'
         }

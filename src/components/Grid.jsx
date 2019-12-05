@@ -2,12 +2,20 @@ import React from 'react';
 import Square from './Square';
 import { connect } from 'react-redux';
 import 'materialize-css/dist/css/materialize.min.css';
-import EndGameScenario from './EndGameScenario';
+
 
 function Grid (props) {
     const rowCSS = {
         display: 'flex',
         justifyContent: 'center'
+    }
+    const restartGameStyle= {
+        backgroundColor: 'red',
+        display: 'flex',
+        justifyContent: 'center'
+    }
+    const winnerStyle= {
+        fontSize: '100px'
     }
 
     function handleRestart() {
@@ -17,8 +25,11 @@ function Grid (props) {
         console.log(props)
 
     }
+    console.log(props.endGameScenario);
     function renderGridOrEndgame(stateSlice){
-        if(stateSlice == null){
+        console.log(stateSlice) 
+        const { end } = stateSlice;
+        if(end == ''){
             return(
         <div className="">
             <div style={rowCSS} className="row">
@@ -37,31 +48,39 @@ function Grid (props) {
             <div className=""><Square id='8'/></div>
             </div>
             <br/>
-            <button onClick={handleRestart}>Restart Game</button>
         </div>
             );
         }
-        else if(stateSlice =='🥕'){
-            return <h1>🥕</h1>;
-        }
-        else if( stateSlice == '🍰'){
-            return <h1>🍰</h1>;
-        }
+        else if(end == '🥕'){
+            return (
+            <div style={rowCSS}>
+                <h1 style={winnerStyle}>🥕</h1>
+            </div>
+            )}
+        else if( end == '🍰'){
+            return (
+                <div style={rowCSS}>
+                     <h1 style={winnerStyle}>🍰</h1>
+                </div>
+            )}
     }
-    var renderGrid = renderGridOrEndgame(props.EndGameScenario);
-console.log(renderGrid);
+    
+    console.log("tacos",props.endGameScenario);
     return (
-        <div>
+        <div className='center'>
 
-            {renderGrid}
+            {renderGridOrEndgame(props.endGameScenario)}
+            <div style={rowCSS} className="center">
+                <button style={restartGameStyle} className="btn-small" onClick={handleRestart}>Restart Game</button>
+            </div>
         </div>
     )
 }
 
 const mapStateToProps = state => {
     return{
-        gameState: state.dataReducer,
-        EndGameScenario: state.endGameReducer
+        gameState: state.gameState,
+        endGameScenario: state.endGameScenario
     }
 }
 
